@@ -1,0 +1,23 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Apply for support" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Apply for support</h1>
+    <p class="govuk-body">Use this service to apply for support.</p>
+    <p class="govuk-body">You will need:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Your name and contact details</li>
+      <li>Details about your situation</li>
+    </ul>
+    <p class="govuk-body">It takes around <strong>10 minutes</strong> to complete.</p>
+    {{ govukButton({
+      text: "Start now",
+      href: "/eligible-to-apply",
+      isStartButton: true
+    }) }}
+  </div>
+</div>
+{% endblock %}
