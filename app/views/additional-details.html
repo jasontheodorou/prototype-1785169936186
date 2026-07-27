@@ -1,0 +1,37 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Tell us more about your situation" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({ text: "Back", href: "javascript:history.back()" }) }}
+
+    {% if errors and errors["additional-details"] %}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [{ text: errors["additional-details"], href: "#additional-details" }]
+    }) }}
+    {% endif %}
+
+    <form method="post" novalidate>
+    {{ govukTextarea({
+      id: "additional-details",
+      name: "additional-details",
+      label: {
+        text: "Tell us more about your situation",
+        isPageHeading: true,
+        classes: "govuk-label--l"
+      },
+      hint: { text: "Give us a brief description. You do not need to include personal or sensitive information." },
+      errorMessage: errors["additional-details"] if errors else null,
+      value: data["additional-details"],
+      rows: 5
+    }) }}
+      {{ govukButton({ text: "Continue" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}
