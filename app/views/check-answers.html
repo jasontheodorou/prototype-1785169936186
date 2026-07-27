@@ -1,0 +1,79 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Check your answers before sending" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({ text: "Back", href: "javascript:history.back()" }) }}
+
+    <h1 class="govuk-heading-xl">Check your answers before sending</h1>
+
+    {{ govukSummaryList({
+      rows: [
+      {
+        key: { text: "Are you eligible to apply?" },
+        value: { text: data["eligible-to-apply"] if data["eligible-to-apply"] else "Not answered" },
+        actions: {
+          items: [{
+            href: "/eligible-to-apply",
+            text: "Change",
+            visuallyHiddenText: "are you eligible to apply?"
+          }]
+        }
+      },
+      {
+        key: { text: "What best describes you?" },
+        value: { text: data["applicant-type"] if data["applicant-type"] else "Not answered" },
+        actions: {
+          items: [{
+            href: "/applicant-type",
+            text: "Change",
+            visuallyHiddenText: "what best describes you?"
+          }]
+        }
+      },
+      {
+        key: { text: "What is your full name?" },
+        value: { text: data["full-name"] if data["full-name"] else "Not answered" },
+        actions: {
+          items: [{
+            href: "/full-name",
+            text: "Change",
+            visuallyHiddenText: "what is your full name?"
+          }]
+        }
+      },
+      {
+        key: { text: "What is your email address?" },
+        value: { text: data["contact-email"] if data["contact-email"] else "Not answered" },
+        actions: {
+          items: [{
+            href: "/contact-email",
+            text: "Change",
+            visuallyHiddenText: "what is your email address?"
+          }]
+        }
+      },
+      {
+        key: { text: "Tell us more about your situation" },
+        value: { text: data["additional-details"] if data["additional-details"] else "Not answered" },
+        actions: {
+          items: [{
+            href: "/additional-details",
+            text: "Change",
+            visuallyHiddenText: "tell us more about your situation"
+          }]
+        }
+      }
+      ]
+    }) }}
+
+    <form method="post" novalidate>
+      {{ govukButton({ text: "Confirm and send" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}
